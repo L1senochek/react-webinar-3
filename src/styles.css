@@ -38,6 +38,7 @@ body {
   display: flex;
   justify-content: flex-start;
   transition: background-color 1s;
+  align-items: center;
 }
 
 .Item_selected {
@@ -49,9 +50,21 @@ body {
   padding: 20px 10px 20px 20px;
 }
 
-.Item-title {
+.Item-title__wrapper {
+  display: flex;
+  align-items: center;
   width: 100%;
   padding: 20px 10px;
+  gap: 5px;
+}
+
+.Item-title__count {
+  border-left: 1px #000 solid;
+  padding-left: 5px;
+}
+
+.Item_selected > .Item-title__wrapper > .Item-title__count {
+  border-color: #fff;
 }
 
 .Item-actions {
