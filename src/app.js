@@ -1,5 +1,5 @@
 import React from 'react';
-import { createElement } from './utils.js';
+import { createElement, pluralizeTimes } from './utils.js';
 import './styles.css';
 
 /**
@@ -30,7 +30,9 @@ function App({ store }) {
                 <div className="Item-title__wrapper">
                   <div className="Item-title__title">{item.title}</div>
                   {item.selectedCount > 0 && (
-                    <div className="Item-title__count">Выделяли {item.selectedCount} раз</div>
+                    <div className="Item-title__count">
+                      Выделяли {item.selectedCount} {pluralizeTimes(item.selectedCount)}
+                    </div>
                   )}
                 </div>
                 <div className="Item-actions">

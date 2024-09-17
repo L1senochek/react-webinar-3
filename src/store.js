@@ -3,8 +3,12 @@
  */
 class Store {
   constructor(initState = {}) {
-    this.state = { lastCode: Math.max(...initState.list.map(item => item.code)), ...initState };
+    this.state = {
+      list: initState.list || [],
+    };
     this.listeners = []; // Слушатели изменений состояния
+    this.removedCodes = new Set();
+    this.codesSet = new Set(initState.list.map(item => item.code));
   }
 
   /**
@@ -39,13 +43,31 @@ class Store {
   }
 
   /**
+   * Генерация уникального кода
+   * @returns {Number} Новый уникальный код
+   */
+  generateUniqueCode() {
+    if (this.removedCodes.size > 0) {
+      const [restoredCode] = this.removedCodes;
+      this.removedCodes.delete(restoredCode);
+      return restoredCode;
+    } else {
+      let newCode = 1;
+      while (this.codesSet.has(newCode)) {
+        newCode++;
+      }
+      this.codesSet.add(newCode);
+      return newCode;
+    }
+  }
+
+  /**
    * Добавление новой записи
    */
   addItem() {
-    const newCode = this.state.lastCode + 1;
+    const newCode = this.generateUniqueCode();
     this.setState({
       ...this.state,
-      lastCode: newCode,
       list: [...this.state.list, { code: newCode, title: 'Новая запись' }],
     });
   }

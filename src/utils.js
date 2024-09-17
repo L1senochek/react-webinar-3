@@ -26,3 +26,18 @@ export function createElement(name, props = {}, ...children) {
 
   return element;
 }
+
+/**
+ * @param count {Number} Количество раз
+ * @returns {String} Правильная форма слова "раз"
+ */
+
+export function pluralizeTimes(count) {
+  if (count % 10 === 1 && count % 100 !== 11) {
+    return 'раз';
+  } else if (count % 10 >= 2 && count % 10 <= 4 && !(count % 100 >= 12 && count % 100 <= 14)) {
+    return 'раза';
+  } else {
+    return 'раз';
+  }
+}
