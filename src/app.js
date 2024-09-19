@@ -1,8 +1,9 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import List from './components/list';
 import Controls from './components/controls';
 import Head from './components/head';
 import PageLayout from './components/page-layout';
+import CartModal from './components/cart-modal';
 
 /**
  * Приложение
@@ -10,37 +11,56 @@ import PageLayout from './components/page-layout';
  * @returns {React.ReactElement}
  */
 function App({ store }) {
+  const [isCartOpen, setCartOpen] = useState(false);
   const list = store.getState().list;
+  const cart = store.getState().cart;
 
   const callbacks = {
-    onDeleteItem: useCallback(
+    onAddToCart: useCallback(
       code => {
-        store.deleteItem(code);
+        store.addToCart(code);
       },
       [store],
     ),
 
-    onSelectItem: useCallback(
+    onRemoveFromCart: useCallback(
       code => {
-        store.selectItem(code);
+        store.removeFromCart(code);
       },
       [store],
     ),
 
-    onAddItem: useCallback(() => {
-      store.addItem();
-    }, [store]),
+    toggleCart: useCallback(() => {
+      setCartOpen(prev => !prev);
+    }, []),
   };
+
+  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
     <PageLayout>
-      <Head title="Приложение на чистом JS" />
-      <Controls onAdd={callbacks.onAddItem} />
-      <List
-        list={list}
-        onDeleteItem={callbacks.onDeleteItem}
-        onSelectItem={callbacks.onSelectItem}
+      <Head title="Магазин" />
+      <Controls
+        onAdd={callbacks.toggleCart}
+        titleButton={'Перейти'}
+        titleLabel={
+          <>
+            В корзине:
+            <strong>
+              {totalItems} товара / {totalPrice} ₽
+            </strong>
+          </>
+        }
       />
+      <List list={list} buttonFunction={callbacks.onAddToCart} buttonLabel={'Добавить'} />
+      {isCartOpen && (
+        <CartModal
+          cart={cart}
+          onRemoveFromCart={callbacks.onRemoveFromCart}
+          onClose={callbacks.toggleCart}
+        />
+      )}
     </PageLayout>
   );
 }

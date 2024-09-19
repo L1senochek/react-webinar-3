@@ -1,0 +1,36 @@
+.CartModal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000b2;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.CartModal > div {
+  display: flex;
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  min-height: 50vh;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+.CartModal > div > div {
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.CartModal-total {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 100px;
+}
