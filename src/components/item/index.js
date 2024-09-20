@@ -12,9 +12,14 @@ function Item({ item, buttonFunction = () => {}, buttonLabel }) {
         <div className={cn('title')}>{item.title}</div>
         <div className={cn('info')}>
           <div className={cn('price')}>
-            {!item.quantity ? item.price : item.price * item.quantity} ₽
+            {!item.quantity
+              ? item.price.toLocaleString()
+              : (item.price * item.quantity).toLocaleString()}{' '}
+            ₽
           </div>
-          {item.quantity && <div className={cn('quantity')}>{item.quantity} шт.</div>}
+          {item.quantity && (
+            <div className={cn('quantity')}>{item.quantity.toLocaleString()} шт.</div>
+          )}
         </div>
       </div>
       <div className={cn('actions')}>

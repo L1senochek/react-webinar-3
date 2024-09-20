@@ -48,7 +48,9 @@ function App({ store }) {
           <>
             В корзине:
             <strong>
-              {!totalItems && !totalPrice ? ' пусто' : ` ${totalItems} товара / ${totalPrice} ₽`}
+              {!totalItems && !totalPrice
+                ? ' пусто'
+                : ` ${totalItems.toLocaleString()} товара / ${totalPrice.toLocaleString()} ₽`}
             </strong>
           </>
         }

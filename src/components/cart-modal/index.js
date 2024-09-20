@@ -24,7 +24,7 @@ function CartModal({ cart, onRemoveFromCart, onClose }) {
         <div className={cn('total')}>
           <strong className={cn('result')}>
             <span className={cn('result_title')}>Итого: </span>
-            {totalPrice} ₽
+            {totalPrice.toLocaleString()} ₽
           </strong>
         </div>
       </PageLayout>
