@@ -10,10 +10,12 @@ function Item({ item, buttonFunction = () => {}, buttonLabel }) {
       <div className={cn('code')}>{item.code}</div>
       <div className={cn('content')}>
         <div className={cn('title')}>{item.title}</div>
-        <div className={cn('price')}>
-          {!item.quantity ? item.price : item.price * item.quantity} ₽
+        <div className={cn('info')}>
+          <div className={cn('price')}>
+            {!item.quantity ? item.price : item.price * item.quantity} ₽
+          </div>
+          {item.quantity && <div className={cn('quantity')}>{item.quantity} шт.</div>}
         </div>
-        {item.quantity && <div className={cn('quantity')}>{item.quantity} шт.</div>}
       </div>
       <div className={cn('actions')}>
         <button onClick={() => buttonFunction(item.code)}>{buttonLabel}</button>

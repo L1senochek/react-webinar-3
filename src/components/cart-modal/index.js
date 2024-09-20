@@ -22,7 +22,10 @@ function CartModal({ cart, onRemoveFromCart, onClose }) {
         <Controls />
         <List list={cart} buttonFunction={onRemoveFromCart} buttonLabel={'Удалить'} />
         <div className={cn('total')}>
-          <strong>Итого: {totalPrice} ₽</strong>
+          <strong className={cn('result')}>
+            <span className={cn('result_title')}>Итого: </span>
+            {totalPrice} ₽
+          </strong>
         </div>
       </PageLayout>
     </div>

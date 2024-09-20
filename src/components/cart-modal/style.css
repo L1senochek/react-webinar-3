@@ -33,5 +33,12 @@
 .CartModal-total {
   display: flex;
   justify-content: flex-end;
+}
+
+.CartModal-result {
   padding-right: 100px;
+}
+
+.CartModal-result_title {
+  padding-right: 50px;
 }
