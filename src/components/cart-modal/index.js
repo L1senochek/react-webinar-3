@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { cn as bem } from '@bem-react/classname';
 import './style.css';
 import PageLayout from '../page-layout';
 import Head from '../head';
@@ -7,19 +8,20 @@ import Controls from '../controls';
 import List from '../list';
 
 function CartModal({ cart, onRemoveFromCart, onClose }) {
+  const cn = bem('CartModal');
   const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
-    <div className="CartModal">
+    <div className={cn()}>
       <PageLayout>
         <Head title="Корзина">
-          <button className="CartModal-close" onClick={onClose}>
+          <button className={cn('close')} onClick={onClose}>
             Закрыть
           </button>
         </Head>
         <Controls />
         <List list={cart} buttonFunction={onRemoveFromCart} buttonLabel={'Удалить'} />
-        <div className="CartModal-total">
+        <div className={cn('total')}>
           <strong>Итого: {totalPrice} ₽</strong>
         </div>
       </PageLayout>

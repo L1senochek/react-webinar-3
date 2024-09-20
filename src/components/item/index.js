@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { cn as bem } from '@bem-react/classname';
 import './style.css';
 
 function Item({ item, buttonFunction = () => {}, buttonLabel }) {
+  const cn = bem('Item');
   return (
-    <div className={'Item'}>
-      <div className="Item-code">{item.code}</div>
-      <div className="Item-content">
-        <div className="Item-title">{item.title}</div>
-        <div className="Item-price">
+    <div className={cn()}>
+      <div className={cn('code')}>{item.code}</div>
+      <div className={cn('content')}>
+        <div className={cn('title')}>{item.title}</div>
+        <div className={cn('price')}>
           {!item.quantity ? item.price : item.price * item.quantity} ₽
         </div>
-        {item.quantity && <div className="Item-price">{item.quantity} шт.</div>}
+        {item.quantity && <div className={cn('quantity')}>{item.quantity} шт.</div>}
       </div>
-      <div className="Item-actions">
+      <div className={cn('actions')}>
         <button onClick={() => buttonFunction(item.code)}>{buttonLabel}</button>
       </div>
     </div>

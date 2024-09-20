@@ -19,16 +19,15 @@
   min-height: 50vh;
   box-sizing: border-box;
   z-index: 100;
+  border-radius: 10px;
 }
 
 .CartModal > div > div {
   width: 100%;
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding-bottom: 40px;
-  border: 0px solid transparent;
 }
 
 .CartModal-total {
