@@ -46,7 +46,7 @@ function App({ store }) {
         titleButton={'Перейти'}
         titleLabel={
           <>
-            В корзине:
+            В корзине:{' '}
             <strong>
               {totalItems} товара / {totalPrice} ₽
             </strong>
