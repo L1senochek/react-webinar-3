@@ -1,0 +1,20 @@
+.Pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 15px;
+  gap: 5px;
+}
+
+.Pagination-button {
+  cursor: pointer;
+}
+
+.Pagination-button_active {
+  background-color: #0087e9;
+  color: #ffffff;
+}
+
+.Pagination-button_disabled {
+  cursor: not-allowed;
+}
