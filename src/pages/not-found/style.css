@@ -1,0 +1,19 @@
+.NotFound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.NotFound-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 5px;
+}
+
+.NotFound-error-title {
+  font-weight: bold;
+}
