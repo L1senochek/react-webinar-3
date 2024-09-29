@@ -10,6 +10,9 @@ class Catalog extends StoreModule {
   initState() {
     return {
       list: [],
+      page: 1,
+      limit: 10,
+      total: 0,
     };
   }
 
