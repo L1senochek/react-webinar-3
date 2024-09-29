@@ -12,7 +12,6 @@ import './style.css';
 function ProductPage() {
   const [product, setProduct] = useState(null);
   const store = useStore();
-  const navigate = useNavigate();
   const { id } = useParams();
   const cn = bem('ProductPage');
 

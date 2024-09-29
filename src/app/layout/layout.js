@@ -1,5 +1,6 @@
 import Basket from '../../app/basket';
 import Main from '../../app/main';
+import MainMenu from '../../components/main-menu';
 import useSelector from '../../store/use-selector';
 
 /**

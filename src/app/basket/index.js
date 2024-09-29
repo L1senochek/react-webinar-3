@@ -20,10 +20,9 @@ function Basket() {
   const callbacks = {
     // Удаление из корзины
     removeFromBasket: useCallback(_id => store.actions.basket.removeFromBasket(_id), [store]),
-    // Закрытие любой модалки
+    // Закрытие модалки
     closeModal: useCallback(() => {
       store.actions.modals.close();
-      // navigate(-1);
     }, [store]),
   };
 
