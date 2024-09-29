@@ -12,7 +12,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
       pages.push(1);
     }
 
-    if (currentPage >= 3) {
+    if (currentPage > 3) {
       pages.push('...');
     }
 
@@ -45,6 +45,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
           className={cn('button', {
             active: pageNum === currentPage,
             disabled: pageNum === currentPage || pageNum === '...',
+            notDots: pageNum !== '...',
           })}
           onClick={() => typeof pageNum === 'number' && onPageChange(pageNum)}
           disabled={pageNum === currentPage || pageNum === '...'}

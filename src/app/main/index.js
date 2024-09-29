@@ -12,7 +12,6 @@ import Loading from '../../components/loading';
 
 function Main() {
   const store = useStore();
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
   const catalog = store.actions.catalog;
@@ -20,15 +19,22 @@ function Main() {
   const page = parseInt(searchParams.get('page') || '1', 10);
   const limit = parseInt(searchParams.get('limit') || '10', 10);
 
-  useEffect(() => {
-    setLoading(true);
-    catalog.load(page, limit).finally(() => setLoading(false));
-  }, [page, limit, catalog]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   catalog.load(page, limit).finally(() => setLoading(false));
+  // }, [page, limit, catalog]);
+
+  // useEffect(() => {
+  //   setLoading(true);
+  //   store.actions.catalog.load().finally(() => setLoading(false));
+  // }, []);
 
   useEffect(() => {
+    const page = parseInt(searchParams.get('page') || '1', 10);
+    const limit = parseInt(searchParams.get('limit') || '10', 10);
     setLoading(true);
-    store.actions.catalog.load().finally(() => setLoading(false));
-  }, []);
+    catalog.load(page, limit).finally(() => setLoading(false));
+  }, [searchParams, catalog]);
 
   const select = useSelector(state => ({
     list: state.catalog.list,
@@ -42,7 +48,6 @@ function Main() {
     // Открытие модалки корзины
     openModalBasket: useCallback(() => {
       store.actions.modals.open('basket');
-      navigate('/basket');
     }, [store]),
   };
 

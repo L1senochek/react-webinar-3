@@ -1,17 +1,33 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
-import Main from './main';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Layout from './layout/layout';
+import CatalogPage from '../pages/catalog';
+import NotFound from '../pages/not-found';
+import ProductPage from './product';
 import Basket from './basket';
-import useStore from '../store/use-store';
-import useSelector from '../store/use-selector';
-import { RouterProvider } from 'react-router-dom';
-import router from '../router/router';
 
 /**
  * Приложение
  * @returns {React.ReactElement}
  */
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <RouterProvider
+      router={createBrowserRouter([
+        {
+          path: '/',
+          element: <Layout />,
+        },
+        {
+          path: '/product/:id',
+          element: <ProductPage />,
+        },
+        {
+          path: '*',
+          element: <NotFound />,
+        },
+      ])}
+    />
+  );
 }
 
 export default App;

@@ -23,7 +23,7 @@ function Basket() {
     // Закрытие любой модалки
     closeModal: useCallback(() => {
       store.actions.modals.close();
-      navigate(-1);
+      // navigate(-1);
     }, [store]),
   };
 

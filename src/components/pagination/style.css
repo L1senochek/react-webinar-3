@@ -3,11 +3,12 @@
   align-items: center;
   justify-content: flex-end;
   padding: 15px;
-  gap: 5px;
 }
 
 .Pagination-button {
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 
 .Pagination-button_active {
@@ -17,4 +18,14 @@
 
 .Pagination-button_disabled {
   cursor: not-allowed;
+}
+
+@media (hover: hover) {
+  .Pagination-button_notDots:hover {
+    background-color: #e1e1e1;
+  }
+  .Pagination-button_active:hover {
+    background-color: #0087e9;
+    color: #ffffff;
+  }
 }

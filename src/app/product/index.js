@@ -28,17 +28,23 @@ function ProductPage() {
     sum: state.basket.sum,
   }));
 
+  // const callbacks = {
+  //   // Добавление в корзину
+  //   addToBasket: useCallback(_id => store.actions.basket.addToBasket(product), [store]),
+  //   // Открытие модалки корзины
+  //   openModalBasket: useCallback(() => {
+  //     store.actions.modals.open('basket');
+  //     navigate('/basket');
+  //   }, [store]),
+  // };
   const callbacks = {
     // Добавление в корзину
-    addToBasket: useCallback(_id => store.actions.basket.addToBasket(product), [store]),
+    addToBasket: useCallback(_id => store.actions.basket.addToBasket(_id), [store]),
     // Открытие модалки корзины
     openModalBasket: useCallback(() => {
       store.actions.modals.open('basket');
-      navigate('/basket');
     }, [store]),
   };
-
-  console.log(product);
 
   if (!product) return <Loading />;
 
