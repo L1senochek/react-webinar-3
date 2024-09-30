@@ -22,7 +22,7 @@ function ProductPage() {
   }, [id]);
 
   const select = useSelector(state => ({
-    list: state.catalog.list,
+    // list: state.catalog.list,
     amount: state.basket.amount,
     sum: state.basket.sum,
   }));
@@ -39,6 +39,9 @@ function ProductPage() {
   const callbacks = {
     // Добавление в корзину
     addToBasket: useCallback(_id => store.actions.basket.addToBasket(_id), [store]),
+    // addToBasket: useCallback(() => {
+    //   store.actions.basket.addToBasket(product);
+    // }, [store, product]),
     // Открытие модалки корзины
     openModalBasket: useCallback(() => {
       store.actions.modals.open('basket');
@@ -46,6 +49,7 @@ function ProductPage() {
   };
 
   if (!product) return <Loading />;
+  console.log(product._id, 123);
 
   return (
     <PageLayout>
@@ -68,7 +72,13 @@ function ProductPage() {
         <p className={cn('item', { price: true })}>
           Цена:<span className={cn('bold')}>{product.price} ₽</span>
         </p>
-        <button onClick={() => callbacks.addToBasket(product)}>Добавить</button>
+        <button
+          // onClick={callbacks.addToBasket}
+
+          onClick={() => callbacks.addToBasket(product._id)}
+        >
+          Добавить
+        </button>
       </div>
     </PageLayout>
   );

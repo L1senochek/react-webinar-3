@@ -13,7 +13,7 @@ class Basket extends StoreModule {
    * Добавление товара в корзину
    * @param _id Код товара
    */
-  addToBasket(_id) {
+  async addToBasket(_id) {
     let sum = 0;
     // Ищем товар в корзине, чтобы увеличить его количество
     let exist = false;
@@ -28,10 +28,17 @@ class Basket extends StoreModule {
     });
 
     if (!exist) {
+      let item;
       const state = this.store.getState();
-      const item =
-        state.catalog.list.find(item => item._id === _id) ||
-        (state.catalog.product && state.catalog.product._id === _id ? state.catalog.product : null);
+
+      // Ищем в каталоге
+      item = state.catalog.list.find(item => item._id === _id);
+
+      if (!item) {
+        const response = await fetch(`/api/v1/articles/${_id}`);
+        const data = await response.json();
+        item = data.result;
+      }
 
       if (item) {
         list.push({ ...item, amount: 1 });
