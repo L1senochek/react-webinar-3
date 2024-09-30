@@ -6,7 +6,7 @@ import BasketTool from '../../components/basket-tool';
 import List from '../../components/list';
 import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import Pagination from '../../components/pagination';
 import Loading from '../../components/loading';
 
@@ -18,16 +18,6 @@ function Main() {
 
   const page = parseInt(searchParams.get('page') || '1', 10);
   const limit = parseInt(searchParams.get('limit') || '10', 10);
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   catalog.load(page, limit).finally(() => setLoading(false));
-  // }, [page, limit, catalog]);
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   store.actions.catalog.load().finally(() => setLoading(false));
-  // }, []);
 
   useEffect(() => {
     const page = parseInt(searchParams.get('page') || '1', 10);

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { memo, useCallback, useEffect, useState } from 'react';
 import Loading from '../../components/loading';
 import PageLayout from '../../components/page-layout';
