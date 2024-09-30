@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import { numberFormat, plural } from '../../utils';
 import './style.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useSelector from '../../store/use-selector';
 import useStore from '../../store/use-store';
 
 function BasketTool() {
   const store = useStore();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const select = useSelector(state => ({
     list: state.catalog.list,
@@ -20,6 +22,9 @@ function BasketTool() {
     // Открытие модалки корзины
     openModalBasket: useCallback(() => {
       store.actions.modals.open('basket');
+      if (location.pathname.includes('/product/')) {
+        navigate('/');
+      }
     }, [store]),
   };
 
